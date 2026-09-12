@@ -5,15 +5,15 @@ import pedagogicalRoutes from "./routes/pedagogical.routes.js";
 
 const app = express();
 
-// Configuração ampla de CORS para evitar bloqueios no preflight
+// Configuração de CORS permitindo explicitamente o seu frontend
 app.use(cors({
-    origin: "*",
+    origin: "https://happy-code-shelter.lovable.app",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-// Força o atendimento a requisições de OPTIONS (preflight)
-app.options("*", cors());
+// Corrige o preflight usando uma expressão regular válida para o Express
+app.options(/(.*)/, cors());
 
 app.use(express.json());
 
